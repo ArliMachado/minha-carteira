@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div``;
 
+export const Content = styled.main``;
+
 export const Filters = styled.div`
   width: 100%;
   display: flex;
@@ -17,6 +19,7 @@ export const Filters = styled.div`
 
     margin: 0 10px;
     transition: opacity 0.3s;
+    opacity: 0.4;
 
     &:hover {
       opacity: 0.7;
@@ -28,14 +31,17 @@ export const Filters = styled.div`
     display: block;
     width: 55px;
     margin: 0 auto;
-    border-bottom: 10px solid ${({ theme }) => theme.colors.warning};
+    border-bottom: 10px solid ${({ theme }) => theme.colors.success};
   }
   .tag-filter-eventual::after {
     content: '';
     display: block;
     width: 55px;
     margin: 0 auto;
-    border-bottom: 10px solid ${({ theme }) => theme.colors.success};
+    border-bottom: 10px solid ${({ theme }) => theme.colors.warning};
+  }
+
+  .tag-actived {
+    opacity: 1;
   }
 `;
-export const Content = styled.div``;

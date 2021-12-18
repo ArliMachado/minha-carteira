@@ -10,7 +10,6 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>React Avançado - Boilerplate</title>
-        <link rel="manifest" href="manifest.json" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link
