@@ -5,8 +5,8 @@ import * as S from './styles';
 
 const MainHeader = () => {
   const emoji = useMemo(() => {
-    const indice = Math.floor(Math.random() * emojis.length);
-    return emojis[indice];
+    // const indice = Math.floor(Math.random() * emojis.length);
+    return emojis[1];
   }, []);
 
   return (

@@ -8,6 +8,7 @@ import SelectInput from 'components/SelectInput';
 
 import expenses from 'repositories/expenses';
 import gains from 'repositories/gains';
+import listOfMonths from 'utils/months';
 
 import * as S from './styles';
 import formatCurrency from 'utils/formatCurrency';
@@ -25,6 +26,13 @@ interface IData {
 export default function List() {
   const router = useRouter();
   const [data, setData] = useState<IData[]>([]);
+  const [monthSelected, setMonthSelected] = useState<string>(
+    String(new Date().getMonth() + 1),
+  );
+  const [yearSelected, setYearSelected] = useState<string>(
+    String(new Date().getFullYear()),
+  );
+
   const { type } = router.query;
 
   const title = useMemo(() => {
@@ -39,19 +47,59 @@ export default function List() {
     return type === 'entry-balance' ? '#F7931B' : '#E44C4E';
   }, [type]);
 
-  const mounths = [
-    { value: 7, label: 'Julho' },
-    { value: 8, label: 'Agosto' },
-    { value: 9, label: 'Setembro' },
-  ];
-  const years = [
-    { value: 2020, label: 2020 },
-    { value: 2019, label: 2019 },
-    { value: 2018, label: 2018 },
-  ];
+  const mounths = useMemo(() => {
+    return listOfMonths.map((month, index) => {
+      return {
+        value: index + 1,
+        label: month,
+      };
+    });
+  }, []);
+  const years = useMemo(() => {
+    const uniqueYears: number[] = [];
+    const currentYear = new Date().getFullYear();
+
+    listData.forEach(item => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+
+      if (!uniqueYears.includes(year)) {
+        uniqueYears.push(year);
+      }
+    });
+
+    if (!uniqueYears.includes(currentYear)) {
+      uniqueYears.push(currentYear);
+    }
+
+    return uniqueYears.map(year => {
+      return {
+        value: year,
+        label: year,
+      };
+    });
+  }, [listData]);
+
+  function handleChangeMonth(value: string) {
+    console.log(value);
+
+    setMonthSelected(value);
+  }
+
+  function handleChangeYear(value: string) {
+    setYearSelected(value);
+  }
 
   useEffect(() => {
-    const response = listData.map(item => {
+    const filteredData = listData.filter(item => {
+      const date = new Date(item.date);
+      const month = String(date.getMonth() + 1);
+      const year = String(date.getFullYear());
+
+      return month === monthSelected && year === yearSelected;
+    });
+
+    const formattedData = filteredData.map(item => {
       return {
         id: Math.random() * listData.length,
         amountFormatted: formatCurrency(Number(item.amount)),
@@ -61,15 +109,24 @@ export default function List() {
         tagColor: item.frequency === 'recorrente' ? '#4E41F0' : '#E44C4E',
       };
     });
-    setData(response);
-  }, [listData]);
+
+    setData(formattedData);
+  }, [listData, monthSelected, yearSelected]);
 
   return (
     <Layout>
       <S.Wrapper>
         <ContentHeader title={title} lineColor={lineColor}>
-          <SelectInput options={mounths} />
-          <SelectInput options={years} />
+          <SelectInput
+            options={mounths}
+            defaultValue={monthSelected}
+            onChange={e => handleChangeMonth(e.target.value)}
+          />
+          <SelectInput
+            options={years}
+            defaultValue={yearSelected}
+            onChange={e => handleChangeYear(e.target.value)}
+          />
         </ContentHeader>
 
         <S.Filters>
