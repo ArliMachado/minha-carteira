@@ -1,4 +1,5 @@
 import ContentHeader from 'components/ContentHeader';
+import Layout from 'components/Layout';
 import SelectInput from 'components/SelectInput';
 
 export default function Dashboard() {
@@ -18,9 +19,11 @@ export default function Dashboard() {
   ];
 
   return (
-    <ContentHeader title="Dashboard" lineColor="#f7931B">
-      <SelectInput options={options} />
-      <SelectInput options={options} />
-    </ContentHeader>
+    <Layout>
+      <ContentHeader title="Dashboard" lineColor="#f7931B">
+        <SelectInput options={options} />
+        <SelectInput options={options} />
+      </ContentHeader>
+    </Layout>
   );
 }

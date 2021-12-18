@@ -5,6 +5,7 @@ import {
   MdArrowUpward,
   MdExitToApp,
 } from 'react-icons/md';
+import Link from 'next/link';
 
 const Aside = () => (
   <S.Wrapper>
@@ -14,18 +15,24 @@ const Aside = () => (
     </S.Header>
 
     <S.MenuContainer>
-      <S.MenuItemLink href="#">
-        <MdDashboard />
-        Dashboard
-      </S.MenuItemLink>
-      <S.MenuItemLink href="#">
-        <MdArrowUpward />
-        Entradas
-      </S.MenuItemLink>
-      <S.MenuItemLink href="#">
-        <MdArrowDownward />
-        Saídas
-      </S.MenuItemLink>
+      <Link href="/dashboard">
+        <S.MenuItemLink href="#">
+          <MdDashboard />
+          Dashboard
+        </S.MenuItemLink>
+      </Link>
+      <Link href="/list/entry-balance">
+        <S.MenuItemLink href="#">
+          <MdArrowUpward />
+          Entradas
+        </S.MenuItemLink>
+      </Link>
+      <Link href="/list/exit-balance">
+        <S.MenuItemLink href="#">
+          <MdArrowDownward />
+          Saídas
+        </S.MenuItemLink>
+      </Link>
       <S.MenuItemLink href="#">
         <MdExitToApp />
         Sair
