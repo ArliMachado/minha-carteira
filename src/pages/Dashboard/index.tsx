@@ -10,6 +10,9 @@ import WalletBox from 'components/WalletBox';
 import expenses from 'repositories/expenses';
 import gains from 'repositories/gains';
 import listOfMonths from 'utils/months';
+import MessageBox from 'components/MessageBox';
+
+import happyImg from 'assets/happy.svg';
 
 export default function Dashboard() {
   const [monthSelected, setMonthSelected] = useState<number>(
@@ -106,6 +109,13 @@ export default function Dashboard() {
             amount={4850.0}
             footerLabel="atualizado com base nas entradas e saídas"
             icon="arrowDown"
+          />
+
+          <MessageBox
+            title="Muito bem!"
+            description="Sua carteira está positiva"
+            icon={happyImg}
+            footerText="Continue assim. Considere investir o seu saldo."
           />
         </S.Content>
       </S.Wrapper>

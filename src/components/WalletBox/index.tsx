@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import CountUp from 'react-countup';
 
 import * as S from './styles';
