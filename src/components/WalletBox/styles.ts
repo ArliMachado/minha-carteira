@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
 interface IWrapperProps {
@@ -33,13 +34,17 @@ export const Wrapper = styled.div<IWrapperProps>`
 `;
 
 export const IconContent = styled.div`
-  position: absolute;
+  position: relative;
 
-  height: 110%;
+  height: 120%;
   width: 100%;
 
-  top: -10px;
+  top: -70px;
   right: -130px;
 
   opacity: 0.3;
+`;
+
+export const Icon = styled(Image)`
+  position: absolute;
 `;

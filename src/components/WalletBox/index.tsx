@@ -43,7 +43,7 @@ const WalletBox = ({
     </h1>
     <small>{footerLabel}</small>
     <S.IconContent>
-      <Image src={iconTypes[icon]} layout="fill" alt={title} />
+      <S.Icon src={iconTypes[icon]} layout="fill" alt={title} />
     </S.IconContent>
   </S.Wrapper>
 );
