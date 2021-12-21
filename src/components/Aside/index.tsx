@@ -1,16 +1,19 @@
-import * as S from './styles';
+import Link from 'next/link';
 import {
   MdDashboard,
   MdArrowDownward,
   MdArrowUpward,
   MdExitToApp,
 } from 'react-icons/md';
-import Link from 'next/link';
+
+import * as S from './styles';
+
+import logo from 'assets/logo.svg';
 
 const Aside = () => (
   <S.Wrapper>
     <S.Header>
-      <S.LogoImg src={'/assets/logo.svg'} alt="Logo Minha Carteira" />
+      <S.LogoImg src={logo} alt="Logo Minha Carteira" />
       <S.Title>Minha Carteira</S.Title>
     </S.Header>
 

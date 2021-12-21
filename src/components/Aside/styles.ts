@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -16,10 +17,10 @@ export const Header = styled.header`
   align-items: center;
   height: 70px;
 `;
-export const LogoImg = styled.img`
-  height: 40px;
-  width: 40px;
-`;
+export const LogoImg = styled(Image).attrs({
+  height: 40,
+  width: 40,
+})``;
 export const Title = styled.h3`
   ${({ theme }) => css`
     color: ${theme.colors.white};
