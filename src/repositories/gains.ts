@@ -1,7 +1,7 @@
 export default [
   {
     description: 'Salário',
-    amount: '1300.52',
+    amount: '1000.52',
     type: 'entrada',
     frequency: 'recorrente',
     date: '2020-01-10',
@@ -22,7 +22,7 @@ export default [
   },
   {
     description: 'Freela site',
-    amount: '900.23',
+    amount: '700.23',
     type: 'entrada',
     frequency: 'eventual',
     date: '2020-02-21',
@@ -68,5 +68,40 @@ export default [
     type: 'entrada',
     frequency: 'recorrente',
     date: '2020-07-10',
+  },
+  {
+    description: 'Salário',
+    amount: '2500.25',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2021-03-10',
+  },
+  {
+    description: 'Salário',
+    amount: '2500.18',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2021-04-10',
+  },
+  {
+    description: 'Salário',
+    amount: '2500.15',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2021-05-10',
+  },
+  {
+    description: 'Salário',
+    amount: '2500.12',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2021-06-10',
+  },
+  {
+    description: 'Salário',
+    amount: '2500.00',
+    type: 'entrada',
+    frequency: 'recorrente',
+    date: '2021-07-10',
   },
 ];
