@@ -1,5 +1,5 @@
-import Dashboard from './dashboard';
+import SignIn from '../templates/SignIn';
 
 export default function Home() {
-  return <Dashboard />;
+  return <SignIn />;
 }
