@@ -1,9 +1,9 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components';
+
+import { CustomThemeProvider } from 'hooks/theme';
 
 import GlobalStyles from 'styles/GlobalStyles';
-import dark from 'styles/themes/dark';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,10 +22,10 @@ function App({ Component, pageProps }: AppProps) {
             NextJS and styled components"
         />
       </Head>
-      <ThemeProvider theme={dark}>
+      <CustomThemeProvider>
         <GlobalStyles />
         <Component {...pageProps} />
-      </ThemeProvider>
+      </CustomThemeProvider>
     </>
   );
 }

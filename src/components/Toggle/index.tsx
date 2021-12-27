@@ -1,15 +1,22 @@
 import * as S from './styles';
 
-const Toggle = () => (
+interface IToggleProps {
+  labelLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange(): void;
+}
+
+const Toggle = ({ labelLeft, labelRight, checked, onChange }: IToggleProps) => (
   <S.Wrapper>
-    <S.ToggleLabel>Light</S.ToggleLabel>
+    <S.ToggleLabel>{labelLeft}</S.ToggleLabel>
     <S.ToggleSelector
-      checked
+      checked={checked}
       uncheckedIcon={false}
       checkedIcon={false}
-      onChange={() => console.log('mudou')}
+      onChange={onChange}
     />
-    <S.ToggleLabel>Dark</S.ToggleLabel>
+    <S.ToggleLabel>{labelRight}</S.ToggleLabel>
   </S.Wrapper>
 );
 

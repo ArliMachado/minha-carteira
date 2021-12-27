@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import * as S from './styles';
 
@@ -303,23 +303,24 @@ export default function Dashboard() {
     // });
   }, [yearSelected]);
 
-  function handleChangeMonth(month: string) {
+  const handleChangeMonth = useCallback((month: string) => {
     try {
       const parseMonth = Number(month);
       setMonthSelected(parseMonth);
     } catch {
       throw new Error('Invalid month value. Is accept 0 - 24');
     }
-  }
+  }, []);
 
-  function handleChangeYear(year: string) {
+  const handleChangeYear = useCallback((year: string) => {
     try {
       const parseYear = Number(year);
       setYearSelected(parseYear);
     } catch {
       throw new Error('Invalid year value. Is accept integer numbers');
     }
-  }
+  }, []);
+
   return (
     <Layout>
       <S.Wrapper>
