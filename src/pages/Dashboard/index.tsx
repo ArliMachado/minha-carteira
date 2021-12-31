@@ -1,24 +1,26 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import * as S from './styles';
+import happyImg from 'assets/happy.svg';
+import sadImg from 'assets/sad.svg';
+import grinningImg from 'assets/grinning.svg';
+import opsImg from 'assets/ops.svg';
+import { withSSRAuth } from 'utils/withSSRAuth';
 
 import ContentHeader from 'components/ContentHeader';
 import Layout from 'components/Layout';
 import SelectInput from 'components/SelectInput';
 import WalletBox from 'components/WalletBox';
+import PieChartBox from 'components/PieChartBox';
+import HistoryBox from 'components/HistoryBox';
+import BarChartBox from 'components/BarChartBox';
+import MessageBox from 'components/MessageBox';
 
 import expenses from 'repositories/expenses';
 import gains from 'repositories/gains';
 import listOfMonths from 'utils/months';
-import MessageBox from 'components/MessageBox';
-
-import happyImg from 'assets/happy.svg';
-import sadImg from 'assets/sad.svg';
-import grinningImg from 'assets/grinning.svg';
-import opsImg from 'assets/ops.svg';
-import PieChartBox from 'components/PieChartBox';
-import HistoryBox from 'components/HistoryBox';
-import BarChartBox from 'components/BarChartBox';
+import { setupAPIClient } from 'services/api';
+import { api } from 'services/apiClient';
 
 export default function Dashboard() {
   const [monthSelected, setMonthSelected] = useState<number>(
@@ -384,3 +386,9 @@ export default function Dashboard() {
     </Layout>
   );
 }
+
+export const getServerSideProps = withSSRAuth(async ctx => {
+  return {
+    props: {},
+  };
+});

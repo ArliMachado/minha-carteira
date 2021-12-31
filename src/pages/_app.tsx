@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { CustomThemeProvider } from 'hooks/theme';
 
 import GlobalStyles from 'styles/GlobalStyles';
+import { AuthProvider } from 'hooks/auth';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -24,7 +25,9 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <CustomThemeProvider>
         <GlobalStyles />
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </CustomThemeProvider>
     </>
   );

@@ -1,6 +1,7 @@
 import Toggle from 'components/Toggle';
+import { AuthContext } from 'hooks/auth';
 import { useTheme } from 'hooks/theme';
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import emojis from 'utils/emojis';
 import * as S from './styles';
 
@@ -10,6 +11,8 @@ const MainHeader = () => {
   const [darkTheme, setDarkTheme] = useState(() =>
     theme.title === 'dark' ? true : false,
   );
+
+  const { user } = useContext(AuthContext);
 
   const handleChangeTheme = () => {
     setDarkTheme(!darkTheme);
@@ -32,7 +35,7 @@ const MainHeader = () => {
 
       <S.Profile>
         <S.Welcome>Olá, {emoji}</S.Welcome>
-        <S.UserName>Arli Machado </S.UserName>
+        <S.UserName>{user?.email}</S.UserName>
       </S.Profile>
     </S.Wrapper>
   );
