@@ -5,6 +5,7 @@ import { api } from 'services/apiClient';
 import { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 type UserProps = {
+  name: string;
   email: string;
   permissions: string[];
   roles: string[];
@@ -42,15 +43,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const isAuthenticated = !!user;
 
   useEffect(() => {
-    const { COOKIE_TOKEN: token } = parseCookies();
+    // const cookie = String(COOKIE_TOKEN);
+    const cookies = parseCookies();
+    const token = cookies[COOKIE_TOKEN];
 
     if (token) {
       api
         .get('/me')
         .then(response => {
-          const { email, permissions, roles } = response.data;
-
+          const { name, email, permissions, roles } = response.data;
           setUser({
+            name,
             email,
             permissions,
             roles,
@@ -70,7 +73,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
       });
 
-      const { token, refreshToken, permissions, roles } = response.data;
+      // const { name, email, permissions, roles } = await api.get('/me');
+
+      const { name, token, refreshToken, permissions, roles } = response.data;
 
       setCookie(undefined, COOKIE_TOKEN, token, {
         maxAge: 60 * 60 * 24 * 30, //30 days
@@ -82,10 +87,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
 
       setUser({
+        name,
         email,
         permissions,
         roles,
       });
+
+      // console.log(`user: ${JSON.stringify(user)}`);
 
       api.defaults.headers['Authorization'] = `Bearer ${token}`;
 

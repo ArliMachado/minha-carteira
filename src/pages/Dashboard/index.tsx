@@ -19,8 +19,6 @@ import MessageBox from 'components/MessageBox';
 import expenses from 'repositories/expenses';
 import gains from 'repositories/gains';
 import listOfMonths from 'utils/months';
-import { setupAPIClient } from 'services/api';
-import { api } from 'services/apiClient';
 
 export default function Dashboard() {
   const [monthSelected, setMonthSelected] = useState<number>(

@@ -1,9 +1,11 @@
-import Toggle from 'components/Toggle';
-import { AuthContext } from 'hooks/auth';
-import { useTheme } from 'hooks/theme';
 import { useContext, useMemo, useState } from 'react';
+
+import Toggle from 'components/Toggle';
+
+import { useTheme } from 'hooks/theme';
 import emojis from 'utils/emojis';
 import * as S from './styles';
+import { AuthContext } from 'hooks/auth';
 
 const MainHeader = () => {
   const { toggleTheme, theme } = useTheme();
@@ -13,6 +15,8 @@ const MainHeader = () => {
   );
 
   const { user } = useContext(AuthContext);
+
+  console.log(`user: ${JSON.stringify(user)}`);
 
   const handleChangeTheme = () => {
     setDarkTheme(!darkTheme);
@@ -35,7 +39,7 @@ const MainHeader = () => {
 
       <S.Profile>
         <S.Welcome>Olá, {emoji}</S.Welcome>
-        <S.UserName>{user?.email}</S.UserName>
+        <S.UserName>{user?.name}</S.UserName>
       </S.Profile>
     </S.Wrapper>
   );
