@@ -4,22 +4,48 @@ import {
   MdArrowDownward,
   MdArrowUpward,
   MdExitToApp,
+  MdClose,
+  MdMenu,
 } from 'react-icons/md';
 
 import * as S from './styles';
 
 import logo from 'assets/logo.svg';
-import { useContext } from 'react';
-import { AuthContext, signOut } from 'hooks/auth';
+import { useTheme } from 'hooks/theme';
+import Toggle from 'components/Toggle';
+import { useState } from 'react';
+import { signOut } from 'hooks/auth';
 
 const Aside = () => {
+  const { toggleTheme, theme } = useTheme();
+
+  const [toggleMenuIsOpened, setToggleMenuIsOpened] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(() =>
+    theme.title === 'dark' ? true : false,
+  );
+
+  const handleToggleMenu = () => {
+    setToggleMenuIsOpened(!toggleMenuIsOpened);
+  };
+
+  const handleChangeTheme = () => {
+    setDarkTheme(!darkTheme);
+    toggleTheme();
+  };
+
   function handleSignOut() {
     signOut();
   }
   return (
-    <S.Wrapper>
+    <S.Wrapper menuIsOpen={toggleMenuIsOpened}>
       <S.Header>
-        <S.LogoImg src={logo} alt="Logo Minha Carteira" />
+        <S.ToggleMenu onClick={handleToggleMenu}>
+          {toggleMenuIsOpened ? <MdClose /> : <MdMenu />}
+        </S.ToggleMenu>
+
+        <S.LogoContainer>
+          <S.LogoImg src={logo} alt="Logo Minha Carteira" />
+        </S.LogoContainer>
         <S.Title>Minha Carteira</S.Title>
       </S.Header>
 
@@ -47,6 +73,15 @@ const Aside = () => {
           Sair
         </S.MenuItemButton>
       </S.MenuContainer>
+
+      <S.ThemeToggleFooter menuIsOpen={toggleMenuIsOpened}>
+        <Toggle
+          labelLeft="Light"
+          labelRight="Dark"
+          checked={darkTheme}
+          onChange={handleChangeTheme}
+        />
+      </S.ThemeToggleFooter>
     </S.Wrapper>
   );
 };

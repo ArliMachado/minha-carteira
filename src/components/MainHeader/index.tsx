@@ -1,11 +1,10 @@
 import { useContext, useMemo, useState } from 'react';
 
-import Toggle from 'components/Toggle';
-
 import { useTheme } from 'hooks/theme';
 import emojis from 'utils/emojis';
 import * as S from './styles';
 import { AuthContext } from 'hooks/auth';
+import Toggle from 'components/Toggle';
 
 const MainHeader = () => {
   const { toggleTheme, theme } = useTheme();

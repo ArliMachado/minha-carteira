@@ -30,11 +30,11 @@ const WalletBox = ({
   <S.Wrapper color={color}>
     <span>{title}</span>
     <h1>
+      <strong>R$</strong>
       <CountUp
         end={amount}
         duration={1}
         delay={0}
-        prefix={'R$ '}
         separator="."
         decimal=","
         decimals={2}

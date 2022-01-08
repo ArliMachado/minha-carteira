@@ -1,5 +1,19 @@
 import styled, { css } from 'styled-components';
 
+export const Header = styled.header`
+  > p {
+    font-size: 18px;
+  }
+`;
+
+export const HeaderTitle = styled.h1`
+  display: flex;
+`;
+
+export const ImageWrapper = styled.div`
+  margin-left: 7px;
+`;
+
 export const Wrapper = styled.div`
   ${({ theme }) => css`
     width: 48%;
@@ -17,18 +31,32 @@ export const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
   `}
-`;
 
-export const Header = styled.header`
-  > p {
-    font-size: 18px;
+  @media(max-width: 770px) {
+    width: 100%;
+    ${HeaderTitle} {
+      font-size: 24px;
+    }
+
+    ${Header} {
+      > p {
+        font-size: 14px;
+      }
+    }
+
+    > footer span {
+      font-size: 14px;
+    }
   }
-`;
 
-export const HeaderTitle = styled.h1`
-  display: flex;
-`;
+  @media (max-width: 420px) {
+    width: 100%;
+    height: auto;
 
-export const ImageWrapper = styled.div`
-  margin-left: 7px;
+    ${Header} {
+      > p {
+        margin-bottom: 15px;
+      }
+    }
+  }
 `;
