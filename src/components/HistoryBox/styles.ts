@@ -1,8 +1,22 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 interface ILegendProps {
   color: string;
 }
+
+const animate = keyframes`
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100%{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -18,6 +32,7 @@ export const Wrapper = styled.div`
     padding: 30px 20px;
 
     border-radius: 7px;
+    animation: ${animate} 0.5s;
   `}
 `;
 
