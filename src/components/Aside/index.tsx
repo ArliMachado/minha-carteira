@@ -6,6 +6,8 @@ import {
   MdExitToApp,
   MdClose,
   MdMenu,
+  MdCategory,
+  MdOutlineMoney,
 } from 'react-icons/md';
 
 import * as S from './styles';
@@ -66,6 +68,18 @@ const Aside = () => {
           <S.MenuItemLink href="#">
             <MdArrowDownward />
             Saídas
+          </S.MenuItemLink>
+        </Link>
+        <Link href="/categories">
+          <S.MenuItemLink href="#">
+            <MdCategory />
+            Categorias
+          </S.MenuItemLink>
+        </Link>
+        <Link href="/payments">
+          <S.MenuItemLink href="#">
+            <MdOutlineMoney />
+            Meios de Pagamento
           </S.MenuItemLink>
         </Link>
         <S.MenuItemButton onClick={handleSignOut}>

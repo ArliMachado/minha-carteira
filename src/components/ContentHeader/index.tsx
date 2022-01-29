@@ -3,7 +3,7 @@ import * as S from './styles';
 interface IContentHeaderProps {
   title: string;
   lineColor: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const ContentHeader = ({ title, lineColor, children }: IContentHeaderProps) => {
@@ -12,7 +12,7 @@ const ContentHeader = ({ title, lineColor, children }: IContentHeaderProps) => {
       <S.TitleContainer lineColor={lineColor}>
         <h1>{title}</h1>
       </S.TitleContainer>
-      <S.Controllers>{children}</S.Controllers>
+      {!!children && <S.Controllers>{children}</S.Controllers>}
     </S.Wrapper>
   );
 };
