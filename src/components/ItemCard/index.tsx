@@ -3,13 +3,17 @@ import React from 'react';
 import * as S from './styles';
 
 interface IItemCardProps {
-  tagColor: string;
+  tagColor?: string;
   title: string;
   subtitle: string;
   // children: React.ReactNode;
 }
 
-const ItemCard = ({ tagColor, title, subtitle }: IItemCardProps) => (
+const ItemCard = ({
+  tagColor = '#E44C4E',
+  title,
+  subtitle,
+}: IItemCardProps) => (
   <S.Wrapper>
     <S.Tag color={tagColor} />
 
