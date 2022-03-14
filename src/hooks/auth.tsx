@@ -7,8 +7,6 @@ import { destroyCookie, parseCookies, setCookie } from 'nookies';
 type UserProps = {
   name: string;
   email: string;
-  permissions: string[];
-  roles: string[];
 };
 
 type SignInCredentialsProps = {
@@ -49,17 +47,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     if (token) {
       api
-        .get('/me')
+        .get('/users/me')
         .then(response => {
-          const { name, email, permissions, roles } = response.data;
+          const { name, email } = response.data;
           setUser({
             name,
             email,
-            permissions,
-            roles,
           });
         })
-        .catch(() => {
+        .catch(err => {
+          console.log(err);
+
           // Aqui cairá os erros diferentes de token expirado, que esta sendo tratado no arquivo api.ts
           signOut();
         });
@@ -75,25 +73,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       // const { name, email, permissions, roles } = await api.get('/me');
 
-      const { name, token, refreshToken, permissions, roles } = response.data;
+      const { user, token, refresh_token } = response.data;
 
       setCookie(undefined, COOKIE_TOKEN, token, {
         maxAge: 60 * 60 * 24 * 30, //30 days
         path: '/',
       });
-      setCookie(undefined, COOKIE_REFRESH_TOKEN, refreshToken, {
+      setCookie(undefined, COOKIE_REFRESH_TOKEN, refresh_token, {
         maxAge: 60 * 60 * 24 * 30, //30 days
         path: '/',
       });
 
       setUser({
-        name,
+        name: user.name,
         email,
-        permissions,
-        roles,
       });
-
-      // console.log(`user: ${JSON.stringify(user)}`);
 
       api.defaults.headers['Authorization'] = `Bearer ${token}`;
 

@@ -15,8 +15,6 @@ const MainHeader = () => {
 
   const { user } = useContext(AuthContext);
 
-  console.log(`user: ${JSON.stringify(user)}`);
-
   const handleChangeTheme = () => {
     setDarkTheme(!darkTheme);
     toggleTheme();

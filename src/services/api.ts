@@ -8,12 +8,13 @@ let failedRequestsQueue = [];
 
 const COOKIE_TOKEN = process.env.NEXT_PUBLIC_COOKIE_TOKEN || '';
 const COOKIE_REFRESH_TOKEN = process.env.NEXT_PUBLIC_COOKIE_REFRESH_TOKEN || '';
+const baseURL = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export function setupAPIClient(ctx = undefined) {
   let cookies = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: 'http://localhost:3333',
+    baseURL,
     headers: {
       Authorization: `Bearer ${cookies[COOKIE_TOKEN]}`,
     },
@@ -34,7 +35,7 @@ export function setupAPIClient(ctx = undefined) {
             isRefreshing = true;
 
             api
-              .post('/refresh', {
+              .post('/refresh-token', {
                 refreshToken: cookies[COOKIE_REFRESH_TOKEN],
               })
               .then(response => {
