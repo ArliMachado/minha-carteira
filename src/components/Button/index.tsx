@@ -1,9 +1,10 @@
+import { ButtonHTMLAttributes } from 'react';
 import * as S from './styles';
 
-const Button = () => (
-  <S.Wrapper>
-    <h1>Button</h1>
-  </S.Wrapper>
+type IButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Button = ({ children, ...rest }: IButtonProps) => (
+  <S.Wrapper {...rest}>{children}</S.Wrapper>
 );
 
 export default Button;
